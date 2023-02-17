@@ -12,7 +12,7 @@ public class PlayerInventory : MonoBehaviour
 {
     public static PlayerInventory Instance;
     [SerializeField] private List<ItemDisplay> inventory;
-    private List<Item> itemInInventory;
+    
 
     private void Awake()
     {
@@ -23,7 +23,10 @@ public class PlayerInventory : MonoBehaviour
         }
         Instance = this;
     }
-
+    public List<ItemDisplay> GetInventory()
+    {
+        return inventory;
+    }
     public void AddItem(Item item)
     {
         // Create new inventory Item
@@ -32,6 +35,22 @@ public class PlayerInventory : MonoBehaviour
         inventoryItem.itemSprite = item.gameObject.GetComponent<SpriteRenderer>().sprite;
 
         ManageItem(inventoryItem);
+    }
+    public void RemoveItem(ItemDisplay inventoryItem, int count)
+    {
+        int goodIndex = 0;
+        for (int i = 0; i < inventory.Count; i++)
+        {
+            if(inventory[i] == inventoryItem)
+            {
+                goodIndex = i;
+                return;
+            }
+
+        }
+        inventory[goodIndex].itemCount -= count;
+        
+        if (inventory[goodIndex].itemCount <= 0) inventory.Remove(inventoryItem);
     }
 
     void ManageItem(ItemDisplay inventoryItem)
