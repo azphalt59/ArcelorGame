@@ -17,6 +17,7 @@ public class DialogManager : MonoBehaviour
 {
     public static DialogManager Instance;
     public DialogSystem DialogSyst;
+    public PlayerMovement playerMovement;
     [SerializeField] private GameObject dialogCanvas;
     // Start is called before the first frame update
     private void Awake()
@@ -32,11 +33,13 @@ public class DialogManager : MonoBehaviour
     {
         if (dialogCanvas.activeSelf)
         {
-            if(Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.X))
             {
                 NextDialog();
             }
+            playerMovement.enabled = false;
         }
+        else playerMovement.enabled = true;
     }
     public void OpenDialog(Sprite NpcSprite, Color SpriteColor, string NpcName, string[] NpcDialog)
     {
