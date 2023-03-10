@@ -9,6 +9,7 @@ public class ItemReceiver : Interactible
     [SerializeField] private SpriteRenderer itemSprite;
 
     [SerializeField] private GameObject door;
+    [SerializeField] private GameObject trigger;
 
     private void Start()
     {
@@ -23,6 +24,7 @@ public class ItemReceiver : Interactible
                 if (item.itemCount >= itemCountNeeded)
                 {
                     door.SetActive(false);
+                    trigger.SetActive(true);
                     PlayerInventory.Instance.RemoveItem(itemNeeded, itemCountNeeded);
                 }
              

@@ -66,4 +66,14 @@ public class PlayerMovement : MonoBehaviour
         }
         return movementVector;
     }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.GetComponent<Teleporter>() != null)
+        {
+            collision.gameObject.GetComponent<Teleporter>().TeleportPlayer();
+           
+        }
+    }
 }

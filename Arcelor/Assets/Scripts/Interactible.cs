@@ -17,13 +17,13 @@ public class Interactible : MonoBehaviour, IInteractable
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(gameObject.name  + " est interactible");
+        //Debug.Log(gameObject.name  + " est interactible");
         other.GetComponent<PlayerInteraction>().SetInteractible(this.gameObject);
         ShowInteraction();
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log(gameObject.name + " n'est plus interactible");
+        //Debug.Log(gameObject.name + " n'est plus interactible");
         other.GetComponent<PlayerInteraction>().ResetInteractible();
         ShowInteraction();
     }
